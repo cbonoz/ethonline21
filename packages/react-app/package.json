@@ -1,5 +1,5 @@
 {
-  "name": "@scaffold-eth/react-app",
+  "name": "cryptoperks",
   "version": "1.0.0",
   "homepage": ".",
   "browserslist": {
@@ -33,6 +33,7 @@
     "arb-ts": "^0.0.18",
     "authereum": "^0.1.14",
     "axios": "^0.21.4",
+    "bitgo": "^13.0.0",
     "bnc-notify": "^1.5.0",
     "dotenv": "^8.2.0",
     "eth-hooks": "2.3.8",
@@ -41,6 +42,8 @@
     "graphiql": "^1.0.5",
     "graphql": "^15.3.0",
     "isomorphic-fetch": "^3.0.0",
+    "moralis": "^0.0.68",
+    "nft.storage": "^3.3.0",
     "node-watch": "^0.7.1",
     "postcss": "^8.2.6",
     "qrcode.react": "^1.0.0",

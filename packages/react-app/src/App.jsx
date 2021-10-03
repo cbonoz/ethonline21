@@ -8,7 +8,7 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Web3Modal from "web3modal";
 import "./App.css";
 import { Account, Contract, Faucet, GasGauge, Header, Ramp, ThemeSwitch } from "./components";
-import { INFURA_ID, NETWORK, NETWORKS, TARGET_NETWORK } from "./constants";
+import { BITGO_TOKEN, INFURA_ID, MORALIS_ID, NETWORK, NETWORKS, TARGET_NETWORK } from "./constants";
 import { Transactor } from "./helpers";
 import {
   useBalance,
@@ -31,6 +31,8 @@ import { capitalize } from "./util";
 import Register from "./components/Register";
 import Employees from "./components/Employees";
 import Home from "./components/Home";
+import { DEMO_EMPLOYEES } from "./util/constants";
+import { initBitgo } from "./util/bgo";
 
 const { ethers } = require("ethers");
 /*
@@ -175,7 +177,7 @@ function App(props) {
 
   const [injectedProvider, setInjectedProvider] = useState();
   const [address, setAddress] = useState();
-  const [employees, setEmployees] = useState();
+  const [employees, setEmployees] = useState(DEMO_EMPLOYEES);
 
   const logoutOfWeb3Modal = async () => {
     await web3Modal.clearCachedProvider();
@@ -403,6 +405,20 @@ function App(props) {
     });
   }, [setInjectedProvider]);
 
+  const initModules = async () => {
+    if (MORALIS_ID) {
+      console.log("init moralis", MORALIS_ID);
+      Moralis.initialize(MORALIS_ID);
+    }
+    // if (BITGO_TOKEN) {
+    //   initBitgo();
+    // }
+  };
+
+  useEffect(() => {
+    initModules();
+  }, []);
+
   useEffect(() => {
     if (web3Modal.cachedProvider) {
       loadWeb3Modal();
@@ -482,9 +498,7 @@ function App(props) {
 
         <Switch>
           <div className="route-container">
-            <Route path="/register">
-              <Register setEmployees={setEmployees} />
-            </Route>
+            <Route render={props => <Register {...props} setEmployees={setEmployees} />} path="/register" />
             <Route path="/employees">
               <Employees employees={employees} />
             </Route>
@@ -534,6 +548,7 @@ function App(props) {
       {/* <ThemeSwitch /> */}
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
+      {/* Moralis: https://docs.moralis.io/moralis-server/getting-started/quick-start#authentication */}
       <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
         <Account
           address={address}

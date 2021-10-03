@@ -11,3 +11,16 @@
 .header-image {
   height: 30px;
 }
+
+.emp-detail {
+  margin-top: 20px;
+}
+
+.back-button {
+  /* float: left; */
+  margin: 20px;
+}
+
+.ant-layout {
+  background: white;
+}
