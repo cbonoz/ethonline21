@@ -15,15 +15,16 @@ function Employees({ employees, history }) {
     return <LoadingOutlined />;
   }
 
-  
+  const isLoaded = !!employees;
+
   return (
     <div>
       <Layout>
         {/* <Sider></Sider> */}
         {!employee && (
           <div>
-            <Button onClick={() => history.push("/register")}>Upload</Button>
-            <EmployeeTable employees={employees} setEmployee={setEmployee} />}
+            {!isLoaded && <Button onClick={() => history.push("/register")}>Upload</Button>}
+            <EmployeeTable employees={employees} setEmployee={setEmployee} />
           </div>
         )}
         {employee && <EmployeeDetail employee={employee} setEmployee={setEmployee} />}

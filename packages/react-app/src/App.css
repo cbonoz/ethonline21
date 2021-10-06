@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .route-container {
@@ -12,6 +12,26 @@
   height: 30px;
 }
 
+.ant-table-row {
+  cursor: pointer;
+}
+
+.pointer {
+  cursor: pointer;
+
+}
+
+.emp-detail {
+  background: white;
+  padding: 40px;
+}
+.about-page {
+  margin-top: 50px;
+}
+.employee-controls {
+  margin-top: 10px;
+}
+
 .emp-detail {
   margin-top: 20px;
 }
@@ -21,6 +41,44 @@
   margin: 20px;
 }
 
+.about-page div {
+  font-size: 20px;
+  line-height: 40px;
+}
+.header-logo {
+  height: 40px;
+}
+
+.about-image {
+  padding: 20px;
+  margin-top: 20px;
+  height: 475px;
+}
+
+.reason-section {
+  margin-bottom: 20px;
+}
+
+.green-text {
+  color: green;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.preview-image {
+  height: 75px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
 .ant-layout {
   background: white;
+}
+
+.upload-text {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 500;
 }

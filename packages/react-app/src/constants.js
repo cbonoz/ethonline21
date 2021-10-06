@@ -193,9 +193,9 @@ export const NETWORK = chainId => {
   }
 };
 
-export const TARGET_NETWORK = NETWORKS.ropsten;
+export const TARGET_NETWORK = NETWORKS.rinkeby;
 
 export const MORALIS_ID = process.env.REACT_APP_MORALIS_ID;
 export const MORALIS_URL = process.env.REACT_APP_MORALIS_SERVER;
 export const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
-export const BITGO_TOKEN = process.env.REACT_APP_BITGO_TOKEN
+export const BITGO_TOKEN = process.env.REACT_APP_BITGO_TOKEN;

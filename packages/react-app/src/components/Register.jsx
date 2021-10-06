@@ -28,11 +28,11 @@ function Register({ setEmployees, history }) {
   };
   return (
     <div>
-      <p>Hi</p>
+      <h1>Manage</h1>
       <CSVReader onFileLoad={onUpload}>Select CSV</CSVReader>
       {data && (
         <div>
-          Uploading {data.length} employees.
+          <div className='upload-text'>Uploading {data.length} employees.</div>
           <br />
           <Button
             onClick={() => {

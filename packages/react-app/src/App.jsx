@@ -27,12 +27,14 @@ import { useContractConfig } from "./hooks";
 import Portis from "@portis/web3";
 import Fortmatic from "fortmatic";
 import Authereum from "authereum";
+import Moralis from "moralis";
 import { capitalize } from "./util";
 import Register from "./components/Register";
 import Employees from "./components/Employees";
 import Home from "./components/Home";
 import { DEMO_EMPLOYEES } from "./util/constants";
 import { initBitgo } from "./util/bgo";
+import About from "./components/About";
 
 const { ethers } = require("ethers");
 /*
@@ -406,8 +408,8 @@ function App(props) {
   }, [setInjectedProvider]);
 
   const initModules = async () => {
+    console.log("init modules", MORALIS_ID, BITGO_TOKEN);
     if (MORALIS_ID) {
-      console.log("init moralis", MORALIS_ID);
       Moralis.initialize(MORALIS_ID);
     }
     // if (BITGO_TOKEN) {
@@ -419,9 +421,12 @@ function App(props) {
     initModules();
   }, []);
 
+  const login = () => {};
+
   useEffect(() => {
     if (web3Modal.cachedProvider) {
-      loadWeb3Modal();
+      console.log("load");
+      // loadWeb3Modal();
     }
   }, [loadWeb3Modal]);
 
@@ -460,7 +465,7 @@ function App(props) {
     );
   }
 
-  const ROUTES = ["register", "employees"]; //"upload"];
+  const ROUTES = ["employees"]; //"upload"];
   const showPrice = false;
 
   return (
@@ -477,7 +482,7 @@ function App(props) {
               }}
               to="/"
             >
-              YourContract
+              Home
             </Link>
           </Menu.Item>
           {ROUTES.map((r, i) => {
@@ -499,9 +504,7 @@ function App(props) {
         <Switch>
           <div className="route-container">
             <Route render={props => <Register {...props} setEmployees={setEmployees} />} path="/register" />
-            <Route path="/employees">
-              <Employees employees={employees} />
-            </Route>
+            <Route path="/employees" render={props => <Employees {...props} employees={employees} />} />
             <Route path="/exampleui">
               <ExampleUI
                 address={address}
@@ -517,9 +520,7 @@ function App(props) {
                 setPurposeEvents={setPurposeEvents}
               />
             </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
+            <Route exact path="/" render={props => <About {...props} />} />
 
             <Route exact path="/contract">
               <Contract

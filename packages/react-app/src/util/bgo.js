@@ -1,13 +1,14 @@
 import { BITGO_TOKEN } from "../constants";
 
 // TODO: fix import.
-// const BitGo = require("bitgo");
 // https://github.com/BitGo/BitGoJS/tree/master/modules/core
+// const BitGo = require("bitgo");
 // const bitgo = new BitGo.BitGo({ accessToken: BITGO_TOKEN });
 
 export const initBitgo = async () => {
-  const result = await bitgo.session();
-  console.log("bitgo init", result);
+  let result;
+  // const result = await bitgo.session();
+  // console.log("bitgo init", result);
   return result;
 };
 
