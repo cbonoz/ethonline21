@@ -1,6 +1,6 @@
-<p align='center'>
+<!-- <p align='center'>
     <img src="./img/logo.png" width=400/>
-</p>
+</p>-->
 
 ## CryptoPerks
 
@@ -24,9 +24,10 @@ REACT_APP_BITGO_TOKEN={YOUR_BITGO_KEY} # Crypto account creation for employees.
 - Deploy: https://docs.siasky.net/skynet-workshops/introduction-workshop/part-5-deploy-the-web-app-on-skynet
 - NFT storage: https://nft.storage/#getting-started
 - Bitgo wallet management: https://github.com/BitGo/BitGoJS/tree/master/modules/core
-- Conjure:  https://youtube.com/playlist?list=PLk1tMbSRqESqXp5u0oHwVLL43e7dfV5LB
+- Conjure: https://youtube.com/playlist?list=PLk1tMbSRqESqXp5u0oHwVLL43e7dfV5LB
 
 <!-- https://docs.moralis.io/moralis-server/getting-started/quick-start#authentication -->
+
 - Sponsors: https://showcase.ethglobal.com/ethonline2021/prizes
 <!--
 https://www.mockaroo.com/
