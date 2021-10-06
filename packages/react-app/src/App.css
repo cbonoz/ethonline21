@@ -18,12 +18,11 @@
 
 .pointer {
   cursor: pointer;
-
 }
 
 .emp-detail {
   background: white;
-  padding: 40px;
+  padding-right: 10px;
 }
 .about-page {
   margin-top: 50px;
@@ -73,7 +72,14 @@
   margin-bottom: 4px;
 }
 .ant-layout {
-  background: white;
+  background: white !important;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .upload-text {

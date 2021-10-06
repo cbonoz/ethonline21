@@ -4,7 +4,7 @@
 
 ## CryptoPerks
 
-Crypto rewards for your employees using interest bearing crypto accounts
+Crypto rewards for your employees using interest bearing crypto accounts.
 
 Built for the EthOnline 2021 hackathon.
 
@@ -24,6 +24,8 @@ REACT_APP_BITGO_TOKEN={YOUR_BITGO_KEY} # Crypto account creation for employees.
 - Deploy: https://docs.siasky.net/skynet-workshops/introduction-workshop/part-5-deploy-the-web-app-on-skynet
 - NFT storage: https://nft.storage/#getting-started
 - Bitgo wallet management: https://github.com/BitGo/BitGoJS/tree/master/modules/core
+- Conjure:  https://youtube.com/playlist?list=PLk1tMbSRqESqXp5u0oHwVLL43e7dfV5LB
+
 <!-- https://docs.moralis.io/moralis-server/getting-started/quick-start#authentication -->
 - Sponsors: https://showcase.ethglobal.com/ethonline2021/prizes
 <!--
@@ -44,6 +46,7 @@ Potential:
 * Sublime: lets borrowers access capital-efficient loans by leveraging their reputation (smart contract based).
 * Skale: Deployment
 * Paraswap: Multichain swap and dex aggregator
+* Conjure: API call from smart contract (ex: feeds)
 * Waku: Communication protocol and network built for ethereum. Private chat on employee pages.
 * Reflexer: Stable coin
 * Zora: Mint and list NFTs

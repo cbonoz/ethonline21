@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Button, Layout } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
+import { Button, Layout, Breadcrumb } from "antd";
+import { LoadingOutlined, HomeOutlined } from "@ant-design/icons";
 import EmployeeTable from "./EmployeeTable/EmployeeTable";
 import EmployeeDetail from "./EmployeeDetail";
+import { getName } from "../util";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -19,10 +20,20 @@ function Employees({ employees, history }) {
 
   return (
     <div>
+      <br />
+      <Breadcrumb>
+        {/* https://ant.design/components/breadcrumb/#header */}
+        <Breadcrumb.Item href="/" className="pointer">
+          <HomeOutlined />
+        </Breadcrumb.Item>
+        <Breadcrumb.Item className="pointer">Employees</Breadcrumb.Item>
+        {employee && <Breadcrumb.Item className="pointer">{getName(employee)}</Breadcrumb.Item>}
+      </Breadcrumb>
       <Layout>
         {/* <Sider></Sider> */}
         {!employee && (
           <div>
+            <div className="heading">Employees</div>
             {!isLoaded && <Button onClick={() => history.push("/register")}>Upload</Button>}
             <EmployeeTable employees={employees} setEmployee={setEmployee} />
           </div>

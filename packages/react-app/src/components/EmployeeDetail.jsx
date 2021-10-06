@@ -34,16 +34,6 @@ function EmployeeDetail({ employee, setEmployee }) {
 
   return (
     <div className="emp-detail">
-      <Breadcrumb>
-        {/* https://ant.design/components/breadcrumb/#header */}
-        <Breadcrumb.Item href="/" className="pointer">
-          <HomeOutlined />
-        </Breadcrumb.Item>
-        <Breadcrumb.Item className="pointer" onClick={() => setEmployee(undefined)}>
-          Employees
-        </Breadcrumb.Item>
-        <Breadcrumb.Item className="pointer">{employeeName}</Breadcrumb.Item>
-      </Breadcrumb>
       <Row>
         <Col span={8}>
           <div className="employee-card">
