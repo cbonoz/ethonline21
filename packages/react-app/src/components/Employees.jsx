@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import EmployeeTable from "./EmployeeTable/EmployeeTable";
 import EmployeeDetail from "./EmployeeDetail";
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Employees({ employees }) {
+function Employees({ employees, history }) {
   const [employee, setEmployee] = useState();
   useEffect(() => {
     console.log("employees", employees);
@@ -14,11 +14,18 @@ function Employees({ employees }) {
   if (!employees) {
     return <LoadingOutlined />;
   }
+
+  
   return (
     <div>
       <Layout>
         {/* <Sider></Sider> */}
-        {!employee && <EmployeeTable employees={employees} setEmployee={setEmployee} />}
+        {!employee && (
+          <div>
+            <Button onClick={() => history.push("/register")}>Upload</Button>
+            <EmployeeTable employees={employees} setEmployee={setEmployee} />}
+          </div>
+        )}
         {employee && <EmployeeDetail employee={employee} setEmployee={setEmployee} />}
       </Layout>
     </div>
