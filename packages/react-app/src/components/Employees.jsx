@@ -26,7 +26,9 @@ function Employees({ employees, history }) {
         <Breadcrumb.Item href="/" className="pointer">
           <HomeOutlined />
         </Breadcrumb.Item>
-        <Breadcrumb.Item className="pointer">Employees</Breadcrumb.Item>
+        <Breadcrumb.Item className="pointer" onClick={() => setEmployee(undefined)}>
+          Employees
+        </Breadcrumb.Item>
         {employee && <Breadcrumb.Item className="pointer">{getName(employee)}</Breadcrumb.Item>}
       </Breadcrumb>
       <Layout>
