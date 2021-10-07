@@ -193,7 +193,7 @@ export const NETWORK = chainId => {
   }
 };
 
-export const TARGET_NETWORK = NETWORKS.rinkeby;
+export const TARGET_NETWORK = NETWORKS.kovan;
 
 export const MORALIS_ID = process.env.REACT_APP_MORALIS_ID;
 export const MORALIS_URL = process.env.REACT_APP_MORALIS_SERVER;

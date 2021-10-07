@@ -1,5 +1,5 @@
 export const APP_NAME = "CryptoPerks";
-export const APP_DESC = "Crypto perks for your employees.";
+export const APP_DESC = "Crypto accounts and rewards for your employees.";
 export const APP_LONG_DESC = "Crypto rewards for your employees using interest bearing crypto accounts.";
 
 export const DEMO_EMPLOYEES = [

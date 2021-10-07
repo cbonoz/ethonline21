@@ -4,7 +4,7 @@ import { UserOutlined } from "@ant-design/icons";
 const c = (title, key, props, dataIndex) => ({ title, key, dataIndex: dataIndex || key, ...props });
 
 export const COLUMNS = [
-  c("---", undefined, {
+  c("---", "", {
     render: () => <UserOutlined />,
   }),
   c("First", "first_name", {

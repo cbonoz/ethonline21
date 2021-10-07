@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Collapse, Breadcrumb, Button, Row, Col, Avatar } from "antd";
+import { Collapse, Breadcrumb, Button, Row, Col, Avatar, Input } from "antd";
 import { HomeOutlined, LeftOutlined, UserOutlined } from "@ant-design/icons";
 import { getName } from "../util";
 import { Tabs } from "antd";
+import { createWallet } from "../util/bgo";
+import Deposit from "./Deposit";
+import { local } from "web3modal";
 
 const { Panel } = Collapse;
 
 const { TabPane } = Tabs;
 
-function EmployeeDetail({ employee, setEmployee }) {
+function EmployeeDetail({ address, userSigner, localProvider, employee, setEmployee }) {
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState();
 
@@ -34,6 +37,7 @@ function EmployeeDetail({ employee, setEmployee }) {
 
   return (
     <div className="emp-detail">
+      <h1>Manage Employee benefits</h1>
       <Row>
         <Col span={8}>
           <div className="employee-card">
@@ -68,19 +72,50 @@ function EmployeeDetail({ employee, setEmployee }) {
         <Col span={16}>
           <div className="employee-controls">
             <Tabs defaultActiveKey={"1"} onChange={callback}>
-              <TabPane tab="Wallet" key="1">
+              <TabPane tab="Badges" key="1">
+                <Deposit
+                  address={address}
+                  userSigner={userSigner}
+                  localProvider={localProvider}
+                  employee={employee}
+                  address={address}
+                />
+              </TabPane>
+              <TabPane tab="Wallet" key="2">
                 <Button onClick={create} loading={loading} disabled={loading}>
                   Create wallet
                 </Button>
-                {wallet && <p>{JSON.stringify(wallet)}</p>}
+                {wallet && (
+                  <div>
+                    <br />
+                    <p>The below wallet data has been registered for {employeeName}:</p>
+                    <pre>{JSON.stringify(wallet, null, "\t")}</pre>
+                    <br />
+                    <Input prefix="Address" disabled value={wallet.ethAddress} />
+                  </div>
+                )}
               </TabPane>
-              <TabPane tab="Lending" key="2">
-                Content of Tab Pane 2
+              <TabPane tab="Benefits" key="3">
+                <Deposit
+                  address={address}
+                  userSigner={userSigner}
+                  localProvider={localProvider}
+                  employee={employee}
+                  address={address}
+                />
                 {/* Add slider based on how long this person has been an employee 
             - enable lending based on a variable rate based on the employee duration: https://ant.design/components/slider/ */}
               </TabPane>
-              <TabPane tab="Notes" key="3">
-                Content of Tab Pane 3
+              <TabPane tab="Employer line of credit" key="4">
+                <Deposit
+                  address={address}
+                  userSigner={userSigner}
+                  localProvider={localProvider}
+                  employee={employee}
+                  address={address}
+                />
+                {/* Add slider based on how long this person has been an employee 
+            - enable lending based on a variable rate based on the employee duration: https://ant.design/components/slider/ */}
               </TabPane>
             </Tabs>
             {/* <Collapse accordion>

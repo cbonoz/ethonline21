@@ -35,6 +35,7 @@ import Home from "./components/Home";
 import { DEMO_EMPLOYEES } from "./util/constants";
 import { initBitgo } from "./util/bgo";
 import About from "./components/About";
+import Admin from "./components/Admin";
 
 const { ethers } = require("ethers");
 /*
@@ -408,13 +409,13 @@ function App(props) {
   }, [setInjectedProvider]);
 
   const initModules = async () => {
-    console.log("init modules", MORALIS_ID, BITGO_TOKEN);
+    console.log(`init modules\nmoralis: ${MORALIS_ID}\nbitgo:${BITGO_TOKEN}`);
     if (MORALIS_ID) {
       Moralis.initialize(MORALIS_ID);
     }
-    // if (BITGO_TOKEN) {
-    //   initBitgo();
-    // }
+    if (BITGO_TOKEN) {
+      initBitgo();
+    }
   };
 
   useEffect(() => {
@@ -430,6 +431,7 @@ function App(props) {
     }
   }, [loadWeb3Modal]);
 
+  const [company, setCompany] = useState();
   const [route, setRoute] = useState();
   useEffect(() => {
     setRoute(window.location.pathname);
@@ -465,7 +467,7 @@ function App(props) {
     );
   }
 
-  const ROUTES = ["employees"]; //"upload"];
+  const ROUTES = ["employees", "admin"]; //"upload"];
   const showPrice = false;
 
   return (
@@ -504,7 +506,19 @@ function App(props) {
         <Switch>
           <div className="route-container">
             <Route render={props => <Register {...props} setEmployees={setEmployees} />} path="/register" />
-            <Route path="/employees" render={props => <Employees {...props} employees={employees} />} />
+            <Route
+              path="/employees"
+              render={props => (
+                <Employees
+                  {...props}
+                  employees={employees}
+                  address={address}
+                  userSigner={userSigner}
+                  mainnetProvider={mainnetProvider}
+                  localProvider={localProvider}
+                />
+              )}
+            />
             <Route path="/exampleui">
               <ExampleUI
                 address={address}
@@ -521,6 +535,8 @@ function App(props) {
               />
             </Route>
             <Route exact path="/" render={props => <About {...props} />} />
+            <Route exact path="/admin" render={props => <Admin company={company} setCompany={setCompany} {...props} />} />
+
 
             <Route exact path="/contract">
               <Contract
