@@ -8,7 +8,7 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Web3Modal from "web3modal";
 import "./App.css";
 import { Account, Contract, Faucet, GasGauge, Header, Ramp, ThemeSwitch } from "./components";
-import { BITGO_TOKEN, INFURA_ID, MORALIS_ID, NETWORK, NETWORKS, TARGET_NETWORK } from "./constants";
+import { BITGO_TOKEN, INFURA_ID, MORALIS_ID, MORALIS_URL, NETWORK, NETWORKS, TARGET_NETWORK } from "./constants";
 import { Transactor } from "./helpers";
 import {
   useBalance,
@@ -63,6 +63,9 @@ const targetNetwork = TARGET_NETWORK;
 // 😬 Sorry for all the console logging
 const DEBUG = true;
 const NETWORKCHECK = true;
+
+// Use moralis auth provider
+const MORALIS = true;
 
 // 🛰 providers
 if (DEBUG) console.log("📡 Connecting to Mainnet Ethereum");
@@ -388,8 +391,20 @@ function App(props) {
   }
 
   const loadWeb3Modal = useCallback(async () => {
-    const provider = await web3Modal.connect();
-    setInjectedProvider(new ethers.providers.Web3Provider(provider));
+    let provider;
+    if (MORALIS) {
+      const user = await Moralis.authenticate();
+      setAddress(user.get("ethAddress"));
+
+      const web3 = await Moralis.enable();
+      console.log("moralis", user, web3);
+
+      provider = new ethers.providers.Web3Provider(web3.givenProvider);
+      setInjectedProvider(provider);
+    } else {
+      provider = await web3Modal.connect();
+      setInjectedProvider(new ethers.providers.Web3Provider(provider));
+    }
 
     provider.on("chainChanged", chainId => {
       console.log(`chain changed to ${chainId}! updating providers`);
@@ -409,9 +424,10 @@ function App(props) {
   }, [setInjectedProvider]);
 
   const initModules = async () => {
-    console.log(`init modules\nmoralis: ${MORALIS_ID}\nbitgo:${BITGO_TOKEN}`);
+    console.log(`init modules\nmoralis: ${MORALIS_ID} ${MORALIS_URL}\nbitgo:${BITGO_TOKEN}`);
     if (MORALIS_ID) {
       Moralis.initialize(MORALIS_ID);
+      Moralis.serverURL = MORALIS_URL;
     }
     if (BITGO_TOKEN) {
       initBitgo();
@@ -535,8 +551,11 @@ function App(props) {
               />
             </Route>
             <Route exact path="/" render={props => <About {...props} />} />
-            <Route exact path="/admin" render={props => <Admin company={company} setCompany={setCompany} {...props} />} />
-
+            <Route
+              exact
+              path="/admin"
+              render={props => <Admin company={company} setCompany={setCompany} {...props} />}
+            />
 
             <Route exact path="/contract">
               <Contract
@@ -568,6 +587,7 @@ function App(props) {
       {/* Moralis: https://docs.moralis.io/moralis-server/getting-started/quick-start#authentication */}
       <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
         <Account
+          injectedProvider={injectedProvider}
           address={address}
           localProvider={localProvider}
           userSigner={userSigner}

@@ -42,6 +42,7 @@ import Wallet from "./Wallet";
 export default function Account({
   address,
   userSigner,
+  injectedProvider,
   localProvider,
   mainnetProvider,
   price,
@@ -52,8 +53,9 @@ export default function Account({
   blockExplorer,
 }) {
   const modalButtons = [];
+
   if (web3Modal) {
-    if (web3Modal.cachedProvider) {
+    if (web3Modal.cachedProvider || injectedProvider) {
       modalButtons.push(
         <Button
           key="logoutbutton"
