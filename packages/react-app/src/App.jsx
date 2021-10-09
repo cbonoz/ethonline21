@@ -183,6 +183,7 @@ function App(props) {
 
   const [injectedProvider, setInjectedProvider] = useState();
   const [address, setAddress] = useState();
+  const [user, setUser] = useState();
   const [employees, setEmployees] = useState(DEMO_EMPLOYEES);
 
   const logoutOfWeb3Modal = async () => {
@@ -192,6 +193,7 @@ function App(props) {
     }
     setTimeout(() => {
       window.location.reload();
+      setUser(undefined);
     }, 1);
   };
 
@@ -213,6 +215,10 @@ function App(props) {
     }
     getAddress();
   }, [userSigner]);
+
+  useEffect(() => {
+    console.log("address changed", address);
+  }, [address]);
 
   // You can warn the user if you would like them to be on a specific network
   const localChainId = localProvider && localProvider._network && localProvider._network.chainId;
@@ -395,6 +401,7 @@ function App(props) {
     if (MORALIS) {
       const user = await Moralis.authenticate();
       setAddress(user.get("ethAddress"));
+      setUser(user);
 
       const web3 = await Moralis.enable();
       console.log("moralis", user, web3);
@@ -527,6 +534,7 @@ function App(props) {
               render={props => (
                 <Employees
                   {...props}
+                  user={user}
                   employees={employees}
                   address={address}
                   userSigner={userSigner}

@@ -4,14 +4,27 @@ import { LoadingOutlined, HomeOutlined } from "@ant-design/icons";
 import EmployeeTable from "./EmployeeTable/EmployeeTable";
 import EmployeeDetail from "./EmployeeDetail";
 import { getName } from "../util";
+import { APP_NAME } from "../util/constants";
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Employees({ employees, history }) {
+function Employees({ user, address, employees, history }) {
   const [employee, setEmployee] = useState();
   useEffect(() => {
     console.log("employees", employees);
   }, [employees]);
+
+  if (!user) {
+    // Not logged in
+
+    return (
+      <div className="authenticate-section">
+        <h1>Authenticate</h1>
+        <p className='auth-text'>To begin using {APP_NAME}, please authenticate to your metamask account using web3.</p>
+      </div>
+    );
+  }
+
   if (!employees) {
     return <LoadingOutlined />;
   }

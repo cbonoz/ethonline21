@@ -12,6 +12,15 @@
   height: 30px;
 }
 
+.auth-text {
+  font-size: 16px;
+}
+
+.authenticate-section {
+  text-align: center;
+  margin-top: 50px;
+}
+
 .ant-table-row {
   cursor: pointer;
 }
