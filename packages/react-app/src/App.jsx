@@ -540,6 +540,7 @@ function App(props) {
                   userSigner={userSigner}
                   mainnetProvider={mainnetProvider}
                   localProvider={localProvider}
+                  provider={injectedProvider}
                 />
               )}
             />

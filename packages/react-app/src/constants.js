@@ -197,5 +197,5 @@ export const TARGET_NETWORK = NETWORKS.kovan;
 
 export const MORALIS_ID = process.env.REACT_APP_MORALIS_ID;
 export const MORALIS_URL = process.env.REACT_APP_MORALIS_SERVER;
-export const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
+export const STORAGE_KEY = process.env.REACT_APP_NFT_KEY;
 export const BITGO_TOKEN = process.env.REACT_APP_BITGO_TOKEN;

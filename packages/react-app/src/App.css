@@ -8,6 +8,24 @@
   max-width: 1000px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+.underline {
+  text-decoration: underline !important;
+  color: rgb(62, 62, 249);
+}
+.info-modal {
+  width: 800px;
+}
+
+.badge-image {
+  height: 128px;
+}
+.badge-data {
+  max-width: 400px;
+}
+
 .header-image {
   height: 30px;
 }

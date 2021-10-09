@@ -8,19 +8,19 @@ import { APP_NAME } from "../util/constants";
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Employees({ user, address, employees, history }) {
+function Employees({ provider, userSigner, user, address, employees, history }) {
   const [employee, setEmployee] = useState();
   useEffect(() => {
     console.log("employees", employees);
   }, [employees]);
 
-  if (!user) {
+  if (false && !user) {
     // Not logged in
 
     return (
       <div className="authenticate-section">
         <h1>Authenticate</h1>
-        <p className='auth-text'>To begin using {APP_NAME}, please authenticate to your metamask account using web3.</p>
+        <p className="auth-text">To begin using {APP_NAME}, please authenticate to your metamask account using web3.</p>
       </div>
     );
   }
@@ -53,7 +53,7 @@ function Employees({ user, address, employees, history }) {
             <EmployeeTable employees={employees} setEmployee={setEmployee} />
           </div>
         )}
-        {employee && <EmployeeDetail employee={employee} setEmployee={setEmployee} />}
+        {employee && <EmployeeDetail userSigner={userSigner} provider={provider} address={address} employee={employee} setEmployee={setEmployee} />}
       </Layout>
     </div>
   );

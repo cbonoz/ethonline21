@@ -13,7 +13,7 @@ Built for the EthOnline 2021 hackathon.
 <pre>
 REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Admin user authentication and balance access.
 REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Admin user authentication and balance access.
-REACT_APP_STORAGE_KEY={YOUR_NFT_STORAGE_KEY} # NFT employee badge and achievement creation.
+REACT_APP_NFT_KEY={YOUR_NFT_STORAGE_KEY} # NFT.storage for employee badge and achievement upload.
 REACT_APP_BITGO_TOKEN={YOUR_BITGO_KEY} # Crypto account creation for employees.
 </pre>
 

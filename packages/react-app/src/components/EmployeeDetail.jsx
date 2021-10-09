@@ -13,9 +13,10 @@ const { Panel } = Collapse;
 
 const { TabPane } = Tabs;
 
-function EmployeeDetail({ address, userSigner, localProvider, employee, setEmployee }) {
+function EmployeeDetail({ address, userSigner, provider, employee, setEmployee }) {
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState();
+  console.log("provider", provider);
 
   const create = async () => {
     setLoading(true);
@@ -79,13 +80,14 @@ function EmployeeDetail({ address, userSigner, localProvider, employee, setEmplo
                 <Badges
                   address={address}
                   userSigner={userSigner}
-                  localProvider={localProvider}
+                  provider={provider}
                   employee={employee}
                   address={address}
                 />
               </TabPane>
               <TabPane tab="Wallet" key="2">
-                <Button onClick={create} loading={loading} disabled={loading}>
+                <p>Create a wallet for this employee to start a deposit account</p>
+                <Button type="primary" onClick={create} loading={loading} disabled={loading}>
                   Create wallet
                 </Button>
                 {wallet && (
@@ -98,11 +100,11 @@ function EmployeeDetail({ address, userSigner, localProvider, employee, setEmplo
                   </div>
                 )}
               </TabPane>
-              <TabPane tab="Benefits" key="3">
+              <TabPane tab="Manage credits" key="3">
                 <Deposit
                   address={address}
                   userSigner={userSigner}
-                  localProvider={localProvider}
+                  provider={provider}
                   employee={employee}
                   address={address}
                 />
@@ -114,7 +116,7 @@ function EmployeeDetail({ address, userSigner, localProvider, employee, setEmplo
                   <Deposit
                     address={address}
                     userSigner={userSigner}
-                    localProvider={localProvider}
+                    provider={provider}
                     employee={employee}
                     address={address}
                   />

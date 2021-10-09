@@ -1,29 +1,46 @@
 import { TxBuilderV2, Network, Market } from "@aave/protocol-js";
-import { c } from ".";
+import { ethers } from "ethers";
+import { c, getPoolAddress } from ".";
 import { TARGET_NETWORK } from "../constants";
 
 const defaultRpcUrl = TARGET_NETWORK.rpcUrl;
 
 // https://github.com/aave/aave-js#deposit
-export const depositAmount = ({
+export const depositAmount = async (
+  userSigner,
+  injectedProvider,
   user, // string,
   reserve, // string,
-  amount, // string,
+  amountEth, // string,
   onBehalfOf, // ? string,
   referralCode, // ? string,
-}) => {
-  const httpProvider = new Web3.providers.HttpProvider(process.env.ETHEREUM_URL || defaultRpcUrl);
-  const txBuilder = new TxBuilderV2(Network.kovan, httpProvider);
+) => {
+  // const httpProvider = new ethers.providers.getDefaultProvider(process.env.ETHEREUM_URL || defaultRpcUrl);
+  const txBuilder = new TxBuilderV2(Network.kovan, injectedProvider);
 
-  const lendingPool = txBuilder.getLendingPool(Market.Proto); // get all lending pool methods
-
-  return lendingPool.deposit({
+  const lendingPool = txBuilder.getLendingPool(Market.AMM); // get all lending pool methods
+  const amount = ethers.utils.parseEther(amountEth).toString();
+  const depositObj = {
     user, // string,
     reserve, // string,
     amount, // string,
-    onBehalfOf, // ? string,
+    onBehalfOf: onBehalfOf || user, // ? string,
     referralCode, // ? string,
-  });
+  };
+  console.log("depositObj", depositObj, injectedProvider);
+  // Returns promise
+  const result = await lendingPool.deposit(depositObj);
+  let results = [];
+  for (let i in result) {
+    let res;
+    try {
+      res = await userSigner.sendTransaction(await result[i].tx());
+    } catch (e) {
+      res = e;
+    }
+    results.push(res);
+  }
+  return results;
 };
 /*
 https://thegraph.com/hosted-service/subgraph/aave/protocol-multy-raw?query=Example%20query
@@ -84,7 +101,7 @@ export const AAVE_DATA = {
 
 export const COLUMNS = [
   c("Address", "id", {
-    render: (t, r, i) => `0x${r.id.split("0x")[2]}`,
+    render: (t, r, i) => getPoolAddress(r.id),
   }),
   c("Name", "name"),
 ];
