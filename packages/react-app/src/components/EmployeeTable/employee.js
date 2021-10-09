@@ -1,7 +1,7 @@
 import { UserOutlined } from "@ant-design/icons";
+import { c } from "../../util";
 
 // [first_name,last_name,phone,address,email,gender,title,salary]
-const c = (title, key, props, dataIndex) => ({ title, key, dataIndex: dataIndex || key, ...props });
 
 export const COLUMNS = [
   c("---", "", {

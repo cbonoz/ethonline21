@@ -60,9 +60,14 @@ Demo flow:
 * Onboard new people to crypto space
 * Set up with interest bearing accounts
 * Tour of platform / home page
-* Creating a new company
+- Moralis for account creation and auth
+- Moralis for saving metadata
 * Uploading a new csv of employees
 * Managing the employees benefit account
+- Grant
+- Using bitgo to generate accounts
+- Moralis saves the data, show moralis server database (similar to firebase). https://lqnmgj95uf1p.moralishost.com:2083/apps/moralisDashboard/browser/Employee
+- Using unique feature
 * Future work and potential/opportunity
 -->
 

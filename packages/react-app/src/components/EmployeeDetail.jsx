@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Collapse, Breadcrumb, Button, Row, Col, Avatar, Input } from "antd";
 import { HomeOutlined, LeftOutlined, UserOutlined } from "@ant-design/icons";
 import { getName } from "../util";
+import { saveEmployee } from "../util/moral";
 import { Tabs } from "antd";
 import { createWallet } from "../util/bgo";
 import Deposit from "./Deposit";
 import { local } from "web3modal";
+import Badges from "./Badges";
 
 const { Panel } = Collapse;
 
@@ -20,6 +22,7 @@ function EmployeeDetail({ address, userSigner, localProvider, employee, setEmplo
     try {
       const w = await createWallet();
       setWallet(w);
+      await saveEmployee({ ...employee, ...wallet });
     } catch (e) {
       console.error("wallet error", e);
     }
@@ -73,7 +76,7 @@ function EmployeeDetail({ address, userSigner, localProvider, employee, setEmplo
           <div className="employee-controls">
             <Tabs defaultActiveKey={"1"} onChange={callback}>
               <TabPane tab="Badges" key="1">
-                <Deposit
+                <Badges
                   address={address}
                   userSigner={userSigner}
                   localProvider={localProvider}
@@ -106,17 +109,19 @@ function EmployeeDetail({ address, userSigner, localProvider, employee, setEmplo
                 {/* Add slider based on how long this person has been an employee 
             - enable lending based on a variable rate based on the employee duration: https://ant.design/components/slider/ */}
               </TabPane>
-              <TabPane tab="Employer line of credit" key="4">
-                <Deposit
-                  address={address}
-                  userSigner={userSigner}
-                  localProvider={localProvider}
-                  employee={employee}
-                  address={address}
-                />
-                {/* Add slider based on how long this person has been an employee 
+              {false && (
+                <TabPane tab="Employer line of credit" key="4">
+                  <Deposit
+                    address={address}
+                    userSigner={userSigner}
+                    localProvider={localProvider}
+                    employee={employee}
+                    address={address}
+                  />
+                  {/* Add slider based on how long this person has been an employee 
             - enable lending based on a variable rate based on the employee duration: https://ant.design/components/slider/ */}
-              </TabPane>
+                </TabPane>
+              )}
             </Tabs>
             {/* <Collapse accordion>
               <Panel header="Account" key="1"></Panel>
