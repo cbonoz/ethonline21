@@ -1,7 +1,17 @@
 {
-  "short_name": "🏗 Scaffold-Eth App",
+  "short_name": "Cryptoperks",
+  "name": "Cryptoperks",
   "start_url": ".",
-  "name": "🏗 Scaffold-Eth App",
+  "description": "Crypto benefits for your employees",
+  "shortcuts": [
+    {
+      "name": "Cryptoperks",
+      "short_name": "Cryptoperks",
+      "description": "Crypto benefits for your employees",
+      "url": "/today?source=pwa",
+      "icons": [{ "src": "./favicon.ico", "sizes": "192x192" }]
+    }
+  ],
   "icons": [
     {
       "src": "favicon.ico",
@@ -19,7 +29,6 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
