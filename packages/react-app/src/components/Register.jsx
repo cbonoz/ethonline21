@@ -28,17 +28,24 @@ function Register({ setEmployees, history }) {
   };
   return (
     <div>
-      <h1>Manage</h1>
+      <br />
+      <h1>Employee upload</h1>
+      <p>
+        Upload a CSV of employees to get started.{" "}
+        <a target="_blank" href="https://github.com/cbonoz/ethonline21/blob/master/data/employees.csv">
+          Example here
+        </a>
+      </p>
       <CSVReader onFileLoad={onUpload}>Select CSV</CSVReader>
       {data && (
         <div>
-          <div className='upload-text'>Uploading {data.length} employees.</div>
+          <div className="upload-text">Uploading {data.length} employees.</div>
           <br />
           <Button
             onClick={() => {
               console.log("set", data);
               setEmployees(data);
-              history.push("/employees");
+              // history.push("/employees");
             }}
           >
             Continue

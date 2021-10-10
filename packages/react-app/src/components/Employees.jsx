@@ -5,10 +5,11 @@ import EmployeeTable from "./EmployeeTable/EmployeeTable";
 import EmployeeDetail from "./EmployeeDetail";
 import { getName } from "../util";
 import { APP_NAME } from "../util/constants";
+import Register from "./Register";
 
 const { Header, Footer, Sider, Content } = Layout;
 
-function Employees({ provider, userSigner, user, address, employees, history }) {
+function Employees({ setEmployees, localProvider, provider, userSigner, user, address, employees, history }) {
   const [employee, setEmployee] = useState();
   useEffect(() => {
     console.log("employees", employees);
@@ -26,7 +27,8 @@ function Employees({ provider, userSigner, user, address, employees, history }) 
   }
 
   if (!employees) {
-    return <LoadingOutlined />;
+    return <Register setEmployees={setEmployees} history={history} />;
+    // return <LoadingOutlined />;
   }
 
   const isLoaded = !!employees;
@@ -55,6 +57,7 @@ function Employees({ provider, userSigner, user, address, employees, history }) 
         )}
         {employee && (
           <EmployeeDetail
+          localProvider={localProvider}
             userSigner={userSigner}
             provider={provider}
             address={address}

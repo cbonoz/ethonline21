@@ -7,12 +7,13 @@ import { getAssetAddress, getPoolAddress } from "../util";
 import { ParaSwap } from "paraswap";
 import SwapCoins from "./SwapCoins";
 
-function Deposit({ provider, userSigner, address, employee }) {
+function Deposit({ localProvider, provider, userSigner, address, employee }) {
   const [amount, setAmount] = useState();
   const [swapActive, setSwapActive] = useState(false);
   const [empAddress, setEmpAddress] = useState();
   const [reserve, setReserve] = useState();
   const [result, setResult] = useState();
+  console.log("userSigner", userSigner);
 
   // useEffect(() => {
   // let userSummary = v2.formatUserSummaryData(poolReservesData, rawUserReserves, userAddress.toLowerCase(), Math.floor(Date.now() / 1000))
@@ -32,7 +33,7 @@ function Deposit({ provider, userSigner, address, employee }) {
     }
     const targetAddress = getAssetAddress(reserve.id);
     try {
-      const r = await depositAmount(userSigner, provider, address, targetAddress, amount); //, empAddress);
+      const r = await depositAmount(userSigner, localProvider || provider, address, targetAddress, amount); //, empAddress);
       setResult(r);
     } catch (e) {
       setResult(e.toString());
@@ -55,6 +56,8 @@ function Deposit({ provider, userSigner, address, employee }) {
       </div>
     );
   }
+
+  const currency = reserve?.name || "Eth";
 
   return (
     <div>
@@ -97,7 +100,7 @@ function Deposit({ provider, userSigner, address, employee }) {
           <br />
           <br />
           <p>
-            Provide amount in {reserve.name || "Eth"} to credit: &nbsp;
+            Provide amount in {currency} to credit: &nbsp;
             <a
               href="#"
               onClick={e => {
@@ -108,7 +111,7 @@ function Deposit({ provider, userSigner, address, employee }) {
               Swap
             </a>
           </p>
-          <Input type="number" prefix="Eth" value={amount} onChange={e => setAmount(e.target.value)} />
+          <Input type="number" prefix={currency} value={amount} onChange={e => setAmount(e.target.value)} />
           <br />
           <br />
           <Button type="primary" onClick={deposit}>

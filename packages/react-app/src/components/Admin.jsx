@@ -5,6 +5,7 @@ import { Input } from "antd";
 function Admin({ company, setCompany }) {
   return (
     <div>
+      <br />
       <p>Set company name:</p>
       <Input value={company} onChange={e => setCompany(e.target.value)} />
     </div>

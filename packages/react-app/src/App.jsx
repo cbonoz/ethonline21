@@ -191,9 +191,10 @@ function App(props) {
       : mainnetInfura;
 
   const [injectedProvider, setInjectedProvider] = useState();
+  const [customProvider, setCustomProvider] = useState();
   const [address, setAddress] = useState();
   const [user, setUser] = useState();
-  const [employees, setEmployees] = useState(DEMO_EMPLOYEES);
+  const [employees, setEmployees] = useState();
 
   const logoutOfWeb3Modal = async () => {
     await web3Modal.clearCachedProvider();
@@ -212,7 +213,7 @@ function App(props) {
   /* 🔥 This hook will get the price of Gas from ⛽️ EtherGasStation */
   const gasPrice = useGasPrice(targetNetwork, "fast");
   // Use your injected provider from 🦊 Metamask or if you don't have it then instantly generate a 🔥 burner wallet.
-  const userProviderAndSigner = useUserProviderAndSigner(injectedProvider, localProvider);
+  const userProviderAndSigner = useUserProviderAndSigner(customProvider || injectedProvider, localProvider);
   const userSigner = userProviderAndSigner.signer;
 
   useEffect(() => {
@@ -415,7 +416,7 @@ function App(props) {
       const web3 = await Moralis.enable();
       console.log("moralis", user, web3);
 
-      // provider = new ethers.providers.Web3Provider(web3.givenProvider);
+      setCustomProvider(new ethers.providers.Web3Provider(web3.givenProvider));
       provider = new ethers.providers.PocketProvider("homestead", POCKET_GATEWAY_ID);
       console.log("set provider", provider);
       setInjectedProvider(provider);
@@ -547,10 +548,11 @@ function App(props) {
                   {...props}
                   user={user}
                   employees={employees}
+                  setEmployees={e => setEmployees(e)}
                   address={address}
                   userSigner={userSigner}
                   mainnetProvider={mainnetProvider}
-                  localProvider={localProvider}
+                  localProvider={customProvider}
                   provider={injectedProvider}
                 />
               )}

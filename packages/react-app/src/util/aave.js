@@ -36,6 +36,7 @@ export const depositAmount = async (
     try {
       res = await userSigner.sendTransaction(await result[i].tx());
     } catch (e) {
+      console.error("error res", e);
       res = e;
     }
     results.push(res);

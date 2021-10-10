@@ -15,7 +15,7 @@ const { Panel } = Collapse;
 
 const { TabPane } = Tabs;
 
-function EmployeeDetail({ history, address, userSigner, provider, employee, setEmployee }) {
+function EmployeeDetail({ history, localProvider, address, userSigner, provider, employee, setEmployee }) {
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState();
   console.log("provider", provider);
@@ -100,6 +100,7 @@ function EmployeeDetail({ history, address, userSigner, provider, employee, setE
                 <Deposit
                   history={history}
                   address={address}
+                  localProvider={localProvider}
                   userSigner={userSigner}
                   provider={provider}
                   employee={employee}
