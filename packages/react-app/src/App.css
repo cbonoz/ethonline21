@@ -19,6 +19,11 @@
   width: 800px;
 }
 
+.action-button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
 .badge-image {
   height: 128px;
 }

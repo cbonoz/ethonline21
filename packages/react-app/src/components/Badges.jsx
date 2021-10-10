@@ -7,7 +7,7 @@ import axios from "axios";
 import { getIpfsUrl, splitDomain } from "../util";
 
 function Badges(props) {
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+  const { acceptedFiles, getRootProps, getInputProps, inputRef } = useDropzone();
   const [badges, setBadges] = useState();
   const [selectedBadge, setSelectedBadge] = useState();
 
@@ -16,6 +16,14 @@ function Badges(props) {
       {file.path} - {file.size} bytes
     </li>
   ));
+
+  const removeAll = () => {
+    console.log("removeAll...");
+    acceptedFiles.length = 0;
+    acceptedFiles.splice(0, acceptedFiles.length);
+    inputRef.current.value = "";
+    console.log(acceptedFiles);
+  };
 
   const upload = async () => {
     if (!acceptedFiles) {
@@ -37,6 +45,7 @@ function Badges(props) {
         alert(`Error uploading ${fileName}: ${e.toString()}`);
       }
     }
+    removeAll();
     console.log("results", results);
     setBadges(results);
   };
@@ -45,21 +54,28 @@ function Badges(props) {
     <div>
       <Modal
         className="info-modal"
-        title={selectedBadge?.metadata?.name}
+        title={selectedBadge?.metadata?.name.split(".")[0] || "Badge Detail"}
         visible={!!selectedBadge}
         onOk={() => setSelectedBadge(undefined)}
+        onCancel={() => setSelectedBadge(undefined)}
         okText="Done"
       >
-        Data: {JSON.stringify(selectedBadge || {}, null, "\t")}
+        {Object.keys(selectedBadge || {}).map((k, i) => {
+          return (
+            <li key={i}>
+              {k}: {selectedBadge[k]}
+            </li>
+          );
+        })}
       </Modal>
-      <p>Achievements</p>
+      <h2>Achievements</h2>
       {/* <img
         className="badge-image"
         src={"https://ipfs.io/ipfs/bafybeibtr3qshzzi2p75z6yu7vu3gpmxvnlneforatvr7o7awtgltw5sjq/helping_badge.png"}
       /> */}
-      {(badges || []).map(b => {
+      {(badges || []).map((b, i) => {
         return (
-          <span className="cursor-pointer" onClick={() => setSelectedBadge(b)}>
+          <span key={i} className="cursor-pointer" onClick={() => setSelectedBadge(b)}>
             <img className="badge-image" src={getIpfsUrl(splitDomain(b.metadata.image))} />
           </span>
         );

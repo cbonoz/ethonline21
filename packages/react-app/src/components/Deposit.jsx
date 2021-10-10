@@ -4,9 +4,12 @@ import { Button, Input, Table } from "antd";
 import { AAVE_DATA, COLUMNS, depositAmount } from "../util/aave";
 import { DeleteFilled, DeleteOutlined, DeleteTwoTone } from "@ant-design/icons";
 import { getAssetAddress, getPoolAddress } from "../util";
+import { ParaSwap } from "paraswap";
+import SwapCoins from "./SwapCoins";
 
 function Deposit({ provider, userSigner, address, employee }) {
   const [amount, setAmount] = useState();
+  const [swapActive, setSwapActive] = useState(false);
   const [empAddress, setEmpAddress] = useState();
   const [reserve, setReserve] = useState();
   const [result, setResult] = useState();
@@ -36,6 +39,22 @@ function Deposit({ provider, userSigner, address, employee }) {
       console.error("err", e);
     }
   };
+
+  if (swapActive) {
+    return (
+      <div>
+        <Button onClick={() => setSwapActive(false)}>Back</Button>
+        <br />
+        <SwapCoins
+          reserve={reserve}
+          address={address}
+          userSigner={userSigner}
+          provider={provider}
+          employee={employee}
+        />
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -77,7 +96,18 @@ function Deposit({ provider, userSigner, address, employee }) {
           />
           <br />
           <br />
-          <p>Provide amount in eth to credit:</p>
+          <p>
+            Provide amount in ${reserve.name} to credit: &nbsp;
+            <a
+              href="#"
+              onClick={e => {
+                e.preventDefault();
+                setSwapActive(true);
+              }}
+            >
+              Swap
+            </a>
+          </p>
           <Input type="number" prefix="Eth" value={amount} onChange={e => setAmount(e.target.value)} />
           <br />
           <br />

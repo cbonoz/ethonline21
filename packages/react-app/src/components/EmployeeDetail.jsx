@@ -8,12 +8,13 @@ import { createWallet } from "../util/bgo";
 import Deposit from "./Deposit";
 import { local } from "web3modal";
 import Badges from "./Badges";
+import ParaSwap from "./SwapCoins";
 
 const { Panel } = Collapse;
 
 const { TabPane } = Tabs;
 
-function EmployeeDetail({ address, userSigner, provider, employee, setEmployee }) {
+function EmployeeDetail({ history, address, userSigner, provider, employee, setEmployee }) {
   const [loading, setLoading] = useState(false);
   const [wallet, setWallet] = useState();
   console.log("provider", provider);
@@ -77,13 +78,7 @@ function EmployeeDetail({ address, userSigner, provider, employee, setEmployee }
           <div className="employee-controls">
             <Tabs defaultActiveKey={"1"} onChange={callback}>
               <TabPane tab="Badges" key="1">
-                <Badges
-                  address={address}
-                  userSigner={userSigner}
-                  provider={provider}
-                  employee={employee}
-                  address={address}
-                />
+                <Badges address={address} userSigner={userSigner} provider={provider} employee={employee} />
               </TabPane>
               <TabPane tab="Wallet" key="2">
                 <p>Create a wallet for this employee to start a deposit account</p>
@@ -102,28 +97,15 @@ function EmployeeDetail({ address, userSigner, provider, employee, setEmployee }
               </TabPane>
               <TabPane tab="Manage credits" key="3">
                 <Deposit
+                  history={history}
                   address={address}
                   userSigner={userSigner}
                   provider={provider}
                   employee={employee}
-                  address={address}
                 />
                 {/* Add slider based on how long this person has been an employee 
             - enable lending based on a variable rate based on the employee duration: https://ant.design/components/slider/ */}
               </TabPane>
-              {false && (
-                <TabPane tab="Employer line of credit" key="4">
-                  <Deposit
-                    address={address}
-                    userSigner={userSigner}
-                    provider={provider}
-                    employee={employee}
-                    address={address}
-                  />
-                  {/* Add slider based on how long this person has been an employee 
-            - enable lending based on a variable rate based on the employee duration: https://ant.design/components/slider/ */}
-                </TabPane>
-              )}
             </Tabs>
             {/* <Collapse accordion>
               <Panel header="Account" key="1"></Panel>

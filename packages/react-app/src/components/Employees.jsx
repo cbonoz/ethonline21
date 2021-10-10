@@ -53,7 +53,15 @@ function Employees({ provider, userSigner, user, address, employees, history }) 
             <EmployeeTable employees={employees} setEmployee={setEmployee} />
           </div>
         )}
-        {employee && <EmployeeDetail userSigner={userSigner} provider={provider} address={address} employee={employee} setEmployee={setEmployee} />}
+        {employee && (
+          <EmployeeDetail
+            userSigner={userSigner}
+            provider={provider}
+            address={address}
+            employee={employee}
+            setEmployee={setEmployee}
+          />
+        )}
       </Layout>
     </div>
   );

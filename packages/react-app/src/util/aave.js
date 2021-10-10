@@ -1,6 +1,6 @@
 import { TxBuilderV2, Network, Market } from "@aave/protocol-js";
 import { ethers } from "ethers";
-import { c, getPoolAddress } from ".";
+import { c, getAssetAddress, getPoolAddress } from ".";
 import { TARGET_NETWORK } from "../constants";
 
 const defaultRpcUrl = TARGET_NETWORK.rpcUrl;
@@ -101,7 +101,7 @@ export const AAVE_DATA = {
 
 export const COLUMNS = [
   c("Address", "id", {
-    render: (t, r, i) => getPoolAddress(r.id),
+    render: (t, r, i) => getAssetAddress(r.id),
   }),
   c("Name", "name"),
 ];
