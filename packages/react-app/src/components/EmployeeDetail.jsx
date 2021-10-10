@@ -9,6 +9,7 @@ import Deposit from "./Deposit";
 import { local } from "web3modal";
 import Badges from "./Badges";
 import ParaSwap from "./SwapCoins";
+import EmployeeChat from "./EmployeeChat";
 
 const { Panel } = Collapse;
 
@@ -103,8 +104,15 @@ function EmployeeDetail({ history, address, userSigner, provider, employee, setE
                   provider={provider}
                   employee={employee}
                 />
-                {/* Add slider based on how long this person has been an employee 
-            - enable lending based on a variable rate based on the employee duration: https://ant.design/components/slider/ */}
+              </TabPane>
+              <TabPane tab="Employee notes" key="4">
+                <EmployeeChat
+                  history={history}
+                  address={address}
+                  userSigner={userSigner}
+                  provider={provider}
+                  employee={employee}
+                />
               </TabPane>
             </Tabs>
             {/* <Collapse accordion>

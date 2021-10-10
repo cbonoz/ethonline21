@@ -23,10 +23,10 @@ export const NETWORKS = {
     blockExplorer: "https://etherscan.io/",
   },
   kovan: {
-    name: "kovan",
+   name: "kovan",
     color: "#7003DD",
     chainId: 42,
-    rpcUrl: `https://kovan.infura.io/v3/${INFURA_ID}`,
+    rpcUrl: process.env.REACT_APP_POCKET_KOVAN_URL || `https://kovan.infura.io/v3/${INFURA_ID}`,
     blockExplorer: "https://kovan.etherscan.io/",
     faucet: "https://gitter.im/kovan-testnet/faucet", // https://faucet.kovan.network/
   },
@@ -199,3 +199,7 @@ export const MORALIS_ID = process.env.REACT_APP_MORALIS_ID;
 export const MORALIS_URL = process.env.REACT_APP_MORALIS_SERVER;
 export const STORAGE_KEY = process.env.REACT_APP_NFT_KEY;
 export const BITGO_TOKEN = process.env.REACT_APP_BITGO_TOKEN;
+const RPC_TOKENS = TARGET_NETWORK.rpcUrl.split('/')
+export const POCKET_GATEWAY_ID = RPC_TOKENS[RPC_TOKENS.length - 1]
+
+console.log("target_network", TARGET_NETWORK, POCKET_GATEWAY_ID);

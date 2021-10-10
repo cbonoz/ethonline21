@@ -8,7 +8,16 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Web3Modal from "web3modal";
 import "./App.css";
 import { Account, Contract, Faucet, GasGauge, Header, Ramp, ThemeSwitch } from "./components";
-import { BITGO_TOKEN, INFURA_ID, MORALIS_ID, MORALIS_URL, NETWORK, NETWORKS, TARGET_NETWORK } from "./constants";
+import {
+  BITGO_TOKEN,
+  INFURA_ID,
+  MORALIS_ID,
+  MORALIS_URL,
+  NETWORK,
+  NETWORKS,
+  POCKET_GATEWAY_ID,
+  TARGET_NETWORK,
+} from "./constants";
 import { Transactor } from "./helpers";
 import {
   useBalance,
@@ -406,7 +415,9 @@ function App(props) {
       const web3 = await Moralis.enable();
       console.log("moralis", user, web3);
 
-      provider = new ethers.providers.Web3Provider(web3.givenProvider);
+      // provider = new ethers.providers.Web3Provider(web3.givenProvider);
+      provider = new ethers.providers.PocketProvider("homestead", POCKET_GATEWAY_ID);
+      console.log("set provider", provider);
       setInjectedProvider(provider);
     } else {
       provider = await web3Modal.connect();

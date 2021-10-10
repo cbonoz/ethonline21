@@ -13,10 +13,11 @@ Built for the EthOnline 2021 hackathon.
 ### Setup
 
 <pre>
-REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Admin user authentication and balance access.
+REACT_APP_MORALIS_SERVER={YOUR_MORALIS_SERVER_URL} # Admin user authentication and balance access (kovan).
 REACT_APP_MORALIS_ID={YOUR_MORALIS_APP_ID} # Admin user authentication and balance access.
-REACT_APP_NFT_KEY={YOUR_NFT_STORAGE_KEY} # NFT.storage for employee badge and achievement upload.
+REACT_APP_NFT_KEY={YOUR_NFT_STORAGE_KEY} # NFT.storage for employee badge and achievement uploads.
 REACT_APP_BITGO_TOKEN={YOUR_BITGO_KEY} # Crypto account creation for employees.
+REACT_APP_POCKET_KOVAN_ENDPOINT={YOUR_POCKET_KOVAN_ENDPOINT} # (Optional) Pocket relay for Kovan network.
 </pre>
 
 ### Useful links
@@ -26,7 +27,6 @@ REACT_APP_BITGO_TOKEN={YOUR_BITGO_KEY} # Crypto account creation for employees.
 - Deploy: https://docs.siasky.net/skynet-workshops/introduction-workshop/part-5-deploy-the-web-app-on-skynet
 - NFT storage: https://nft.storage/#getting-started
 - Bitgo wallet management: https://github.com/BitGo/BitGoJS/tree/master/modules/core
-- Conjure: https://youtube.com/playlist?list=PLk1tMbSRqESqXp5u0oHwVLL43e7dfV5LB
 
 <!-- https://docs.moralis.io/moralis-server/getting-started/quick-start#authentication -->
 
@@ -35,7 +35,19 @@ REACT_APP_BITGO_TOKEN={YOUR_BITGO_KEY} # Crypto account creation for employees.
 https://www.mockaroo.com/
 -->
 
+### Sample data
+See `./data/employees.csv`
+
 ### Sponsors
+
+- AAVE: AAVE is used to give the greatest selection of interest-bearing accounts offered in different ERC-20 supported tokens. The admin or the employee can select the currency most appropriate for their particular goals.
+- Moralis: Secure login and balance for administrators against Metamask. Employee metadata and wallet information is stored and retrieved using Moralis objects. IPFS connection for retrieving badges.
+- Skynet: Deployment and homescreen access. Add cryptoperks to hosted storage
+- Bitgo:wallet creation. BitGo SDKs, WBTC, Smart contracts library extensions and BitGo wallet.
+- IPFS / Filecoin: Using nft.storage for employee badges, records, and achievements.
+- Paraswap: Dex aggregator used for getting the best exchange rates. For deposits, Paraswap enables swapping between the current currency (Eth) and the target currency for the admins account from the user interface. 
+- Reflexer: The Reflexer RAI is added/demoed as an exchangeable/swappable token for employee crypto account deposits.
+- Pocket Network: Used to proxy and track kovan network requests serving the Cryptoperks application.
 
 <!--
 In place:
@@ -43,7 +55,7 @@ In place:
 * Skynet: Deploy project front end to skynet (sia) with homescreen support
 * IPFS: Using nft.storage for employee badges, records, and achievements.
 * Bitgo: wallet creation. BitGo SDKs, WBTC, Smart contracts library extensions and BitGo wallet.
-* Paraswap: Multichain swap and dex aggregator. Used for swap
+* Paraswap: Multichain swap and dex aggregator. Used for swaps to target liquity/interest pools.
 
 Potential:
 * Ether cards: NFT platform to engage, grow, and monetize a social or follower community.
