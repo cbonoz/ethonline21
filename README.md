@@ -90,26 +90,25 @@ Demo flow:
 
 ### Screenshots
 
-Home page
+<h2>Home page</h2>
 <img src="./img/home.png" width=800/>
-Connecting account with Moralis
+<h2>Connecting account with Moralis</h2>
 <img src="./img/moralis.png" width=800/>
-Uploading a list of employees from a CSV
+<h2>Uploading a list of employees from a CSV</h2>
 <img src="./img/employees.png" width=800/>
-Managing badges/achievements.
+<h2>Managing badges/achievements.</h2>
 <img src="./img/badge1.png" width=800/>
-<img src="./img/badge2.png" width=800/>
-Create wallet for each employee
+<h2>Create wallet for each employee</h2>
 <img src="./img/wallet.png" width=800/>
-Moralis saves wallet and employee metadata each update.
+<h2>Moralis saves wallet and employee metadata each update.</h2>
 <img src="./img/moralis_obj.png" width=800/>
-Share notes on the particular employee record
+<h2>Share notes on the particular employee record</h2>
 <img src="./img/notes.png" width=800/>
-Discover lending pools for the employee
+<h2>Discover lending pools for the employee</h2>
 <img src="./img/pools.png" width=800/>
-IPFS upload result
+<h2>IPFS upload result</h2>
 <img src="./img/ipfs_example.png" width=800/>
-Pocket network used for proxying requests in demo
+<h2>Pocket network used for proxying requests in demo</h2>
 <img src="./img/pocket_kovan.png" width=800/>
 
 ### Quick Start
