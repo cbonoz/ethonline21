@@ -14,7 +14,7 @@ function Employees({ provider, userSigner, user, address, employees, history }) 
     console.log("employees", employees);
   }, [employees]);
 
-  if (false && !user) {
+  if (!user) {
     // Not logged in
 
     return (
