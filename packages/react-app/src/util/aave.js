@@ -56,6 +56,10 @@ export const AAVE_DATA = {
   data: {
     reserves: [
       {
+        id: "0x76b06a2f6df6f0514e7bec52a9afb3f603b477cd0x24a42fd28c976a61df5d00d0599c34c4f90748c8",
+        name: "Reflexer RAI",
+      },
+      {
         id: "0x0000000000085d4780b73119b644ae5ecd22b3760x24a42fd28c976a61df5d00d0599c34c4f90748c8",
         name: "TrueUSD",
       },

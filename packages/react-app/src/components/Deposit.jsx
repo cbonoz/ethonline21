@@ -97,7 +97,7 @@ function Deposit({ provider, userSigner, address, employee }) {
           <br />
           <br />
           <p>
-            Provide amount in ${reserve.name} to credit: &nbsp;
+            Provide amount in {reserve.name || "Eth"} to credit: &nbsp;
             <a
               href="#"
               onClick={e => {

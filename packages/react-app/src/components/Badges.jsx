@@ -4,12 +4,14 @@ import PropTypes from "prop-types";
 import { storeNFT } from "../util/nft";
 import { Button, Modal, Card } from "antd";
 import axios from "axios";
-import { getIpfsUrl, splitDomain } from "../util";
+import { getIpfsUrl, listify, splitDomain } from "../util";
 
 function Badges(props) {
   const { acceptedFiles, getRootProps, getInputProps, inputRef } = useDropzone();
   const [badges, setBadges] = useState();
   const [selectedBadge, setSelectedBadge] = useState();
+  const [matches, setMatches] = useState();
+  const [loading, setLoading] = useState(false);
 
   const files = acceptedFiles.map(file => (
     <li key={file.path}>
@@ -29,6 +31,8 @@ function Badges(props) {
     if (!acceptedFiles) {
       alert("At least one image file is required for upload");
     }
+
+    setLoading(true);
     // TODO: upload to ipfs.
     let results = [...(badges || [])];
     for (let i in acceptedFiles) {
@@ -46,8 +50,34 @@ function Badges(props) {
       }
     }
     removeAll();
+    setLoading(false);
     console.log("results", results);
     setBadges(results);
+  };
+
+  const searchNFT = async () => {
+    setLoading(true);
+    const imageUrl = getIpfsUrl(splitDomain(selectedBadge.metadata.image));
+    var options = {
+      method: "POST",
+      url: "https://api.nftport.xyz/v0/recommendations/similar_nfts/urls",
+      headers: { "Content-Type": "application/json", Authorization: "" },
+      data: {
+        url: imageUrl,
+        page_number: 1,
+        page_size: 50,
+      },
+    };
+
+    try {
+      const results = await axios.request(options);
+      setMatches(results.data);
+    } catch (e) {
+      console.error("matches", e);
+      alert("Error finding matches", e.toString());
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -60,13 +90,21 @@ function Badges(props) {
         onCancel={() => setSelectedBadge(undefined)}
         okText="Done"
       >
-        {Object.keys(selectedBadge || {}).map((k, i) => {
-          return (
-            <li key={i}>
-              {k}: {selectedBadge[k]}
-            </li>
-          );
-        })}
+        {listify(selectedBadge)}
+
+        <br />
+        <p>Find other employees with this NFT!</p>
+
+        {/* TODO: add api key */}
+        {false && <Button type={"primary"} loading={loading} disabled={loading} onClick={searchNFT}>
+          Search NFTs
+        </Button>}
+        {matches && (
+          <div>
+            <hr />
+            {listify(matches)}
+          </div>
+        )}
       </Modal>
       <h2>Achievements</h2>
       {/* <img
@@ -75,7 +113,14 @@ function Badges(props) {
       /> */}
       {(badges || []).map((b, i) => {
         return (
-          <span key={i} className="cursor-pointer" onClick={() => setSelectedBadge(b)}>
+          <span
+            key={i}
+            className="cursor-pointer"
+            onClick={() => {
+              setMatches(undefined);
+              setSelectedBadge(b);
+            }}
+          >
             <img className="badge-image" src={getIpfsUrl(splitDomain(b.metadata.image))} />
           </span>
         );
@@ -86,11 +131,17 @@ function Badges(props) {
           <input {...getInputProps()} />
           <p className="cursor-pointer underline">Drag 'n' drop some files here, or click to select files</p>
         </div>
-        <aside>
-          <h4>Files</h4>
-          <ul>{files}</ul>
-        </aside>
-        <Button onClick={upload}>Upload</Button>
+        {files.length > 0 && (
+          <span>
+            <aside>
+              <h4>Files</h4>
+              <ul>{files}</ul>
+            </aside>
+            <Button type="primary" disabled={loading} loading={loading} onClick={upload}>
+              Upload
+            </Button>
+          </span>
+        )}
       </Card>
     </div>
   );

@@ -1,12 +1,14 @@
 <!-- <p align='center'>
     <img src="./img/logo.png" width=400/>
-</p>-->
+</p> -->
 
 ## CryptoPerks
 
 Crypto rewards for your employees using interest bearing crypto accounts.
 
 Built for the EthOnline 2021 hackathon.
+
+<b>Note this project is currently for demo purposes on Kovan network and would require additional logic to be mainnet ready.</b>
 
 ### Setup
 
@@ -41,12 +43,12 @@ In place:
 * Skynet: Deploy project front end to skynet (sia) with homescreen support
 * IPFS: Using nft.storage for employee badges, records, and achievements.
 * Bitgo: wallet creation. BitGo SDKs, WBTC, Smart contracts library extensions and BitGo wallet.
+* Paraswap: Multichain swap and dex aggregator. Used for swap
 
 Potential:
 * Ether cards: NFT platform to engage, grow, and monetize a social or follower community.
 * Sublime: lets borrowers access capital-efficient loans by leveraging their reputation (smart contract based).
 * Skale: Deployment
-* Paraswap: Multichain swap and dex aggregator
 * Conjure: API call from smart contract (ex: feeds)
 * Waku: Communication protocol and network built for ethereum. Private chat on employee pages.
 * Reflexer: Stable coin
