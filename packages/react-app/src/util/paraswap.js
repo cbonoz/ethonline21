@@ -23,6 +23,10 @@ export const swapToken = async (userSigner, provider, destToken, amountEth, send
 
   const priceRoute = ratesOrError;
   console.log("priceRoute", priceRoute);
+  if (priceRoute.status === 400) {
+    alert(destToken + " " + priceRoute.message);
+    return;
+  }
   const destAmount = ethers.BigNumber.from(priceRoute.destAmount).toString();
 
   const txParams = await paraSwap.buildTx(

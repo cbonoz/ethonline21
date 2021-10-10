@@ -57,7 +57,7 @@ function Employees({ setEmployees, localProvider, provider, userSigner, user, ad
         )}
         {employee && (
           <EmployeeDetail
-          localProvider={localProvider}
+            localProvider={localProvider}
             userSigner={userSigner}
             provider={provider}
             address={address}

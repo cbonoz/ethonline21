@@ -21,6 +21,7 @@ function SwapCoins({ reserve, address, userSigner, provider }) {
     } catch (e) {
       console.error("err", e);
       res = e.toString();
+      alert(JSON.stringify(res));
     }
     console.log("result", res);
     setResult(res);
@@ -33,7 +34,7 @@ function SwapCoins({ reserve, address, userSigner, provider }) {
       <Input prefix={"Dest"} value={reserve.name} disabled />
       <Input prefix={"Dest Address"} value={reserve.id} disabled />
       <br />
-      <Button className='action-button' type={"primary"} onClick={swap}>
+      <Button className="action-button" type={"primary"} onClick={swap}>
         Swap
       </Button>
     </div>

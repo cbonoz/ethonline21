@@ -50,7 +50,7 @@ function Deposit({ localProvider, provider, userSigner, address, employee }) {
           reserve={reserve}
           address={address}
           userSigner={userSigner}
-          provider={provider}
+          provider={localProvider || provider}
           employee={employee}
         />
       </div>
