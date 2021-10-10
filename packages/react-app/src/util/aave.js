@@ -64,12 +64,12 @@ export const AAVE_DATA = {
         name: "TrueUSD",
       },
       {
-        id: "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e0x24a42fd28c976a61df5d00d0599c34c4f90748c8",
-        name: "yearn.finance",
+        id: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f9840x24a42fd28c976a61df5d00d0599c34c4f90748c8",
+        name: "Uniswap",
       },
       {
-        id: "0x0d8775f648430679a709e98d2b0cb6250d2887ef0x24a42fd28c976a61df5d00d0599c34c4f90748c8",
-        name: "Basic Attention Token",
+        id: "0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e0x24a42fd28c976a61df5d00d0599c34c4f90748c8",
+        name: "yearn.finance",
       },
       {
         id: "0x0f5d2fb29fb7d3cfee444a200298f468908cc9420x24a42fd28c976a61df5d00d0599c34c4f90748c8",
@@ -80,8 +80,8 @@ export const AAVE_DATA = {
         name: "Reputation",
       },
       {
-        id: "0x1f9840a85d5af5bf1d1762f925bdaddc4201f9840x24a42fd28c976a61df5d00d0599c34c4f90748c8",
-        name: "Uniswap",
+        id: "0x0d8775f648430679a709e98d2b0cb6250d2887ef0x24a42fd28c976a61df5d00d0599c34c4f90748c8",
+        name: "Basic Attention Token",
       },
       {
         id: "0x2260fac5e5542a773aa44fbcfedf7c193bc2c5990x24a42fd28c976a61df5d00d0599c34c4f90748c8",
