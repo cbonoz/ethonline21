@@ -36,6 +36,7 @@ https://www.mockaroo.com/
 -->
 
 ### Sample data
+
 See `./data/employees.csv`
 
 ### Sponsors
@@ -45,7 +46,7 @@ See `./data/employees.csv`
 - Skynet: Deployment and homescreen access. Add cryptoperks to hosted storage
 - Bitgo:wallet creation. BitGo SDKs, WBTC, Smart contracts library extensions and BitGo wallet.
 - IPFS / Filecoin: Using nft.storage for employee badges, records, and achievements.
-- Paraswap: Dex aggregator used for getting the best exchange rates. For deposits, Paraswap enables swapping between the current currency (Eth) and the target currency for the admins account from the user interface. 
+- Paraswap: Dex aggregator used for getting the best exchange rates. For deposits, Paraswap enables swapping between the current currency (Eth) and the target currency for the admins account from the user interface.
 - Reflexer: The Reflexer RAI is added/demoed as an exchangeable/swappable token for employee crypto account deposits.
 - Pocket Network: Used to proxy and track kovan network requests serving the Cryptoperks application.
 
@@ -100,6 +101,8 @@ Managing badges/achievements.
 <img src="./img/badge2.png" width=800/>
 Create wallet for each employee
 <img src="./img/wallet.png" width=800/>
+Moralis saves wallet and employee metadata each update.
+<img src="./img/moralis_obj.png" width=800/>
 Share notes on the particular employee record
 <img src="./img/notes.png" width=800/>
 Discover lending pools for the employee
