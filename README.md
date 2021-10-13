@@ -4,7 +4,7 @@
 
 ## CryptoPerks
 
-Crypto rewards for your employees using interest bearing crypto accounts. Crypoperks uses a variety of hosted blockchain services to create a comprehensive employee profile management platform prototype.
+Crypto rewards for your employees using interest bearing crypto accounts. CryptoPerks uses a variety of hosted blockchain services to create a comprehensive employee profile management platform prototype.
 
 Built for the EthOnline 2021 hackathon.
 
