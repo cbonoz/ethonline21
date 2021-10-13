@@ -100,7 +100,7 @@ function EmployeeDetail({ history, localProvider, address, userSigner, provider,
                 <Deposit
                   history={history}
                   address={address}
-                  localProvider={provider || localProvider}
+                  localProvider={localProvider}
                   userSigner={userSigner}
                   provider={provider}
                   employee={employee}

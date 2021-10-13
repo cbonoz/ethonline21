@@ -182,6 +182,8 @@ const web3Modal = new Web3Modal({
   },
 });
 
+window.web3Modal = web3Modal
+
 function App(props) {
   const mainnetProvider =
     poktMainnetProvider && poktMainnetProvider._isProvider
@@ -195,6 +197,7 @@ function App(props) {
   const [address, setAddress] = useState();
   const [user, setUser] = useState();
   const [employees, setEmployees] = useState();
+  const [w3, setW3] = useState();
 
   const logoutOfWeb3Modal = async () => {
     await web3Modal.clearCachedProvider();
@@ -414,9 +417,10 @@ function App(props) {
       setUser(user);
 
       const web3 = await Moralis.enable();
+      window.web3 = web3;
       console.log("moralis", user, web3);
-
-      setCustomProvider(new ethers.providers.Web3Provider(web3.givenProvider));
+      const etherProvider = new ethers.providers.Web3Provider(web3.givenProvider);
+      setCustomProvider(etherProvider);
       provider = new ethers.providers.PocketProvider("homestead", POCKET_GATEWAY_ID);
       console.log("set provider", provider);
       setInjectedProvider(provider);

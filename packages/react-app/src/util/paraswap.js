@@ -9,7 +9,7 @@ export const swapToken = async (userSigner, provider, destToken, amountEth, send
 
   console.log("swap", userSigner, provider, srcToken, destToken, srcAmount, senderAddress);
 
-  const paraSwap = new ParaSwap().setWeb3Provider(provider);
+  const paraSwap = new ParaSwap().setWeb3Provider(provider || userSigner.provider);
 
   //   const destToken = "0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359";
   //   const srcAmount = "1000000000000000000"; //The source amount multiplied by its decimals
@@ -23,10 +23,6 @@ export const swapToken = async (userSigner, provider, destToken, amountEth, send
 
   const priceRoute = ratesOrError;
   console.log("priceRoute", priceRoute);
-  if (priceRoute.status === 400) {
-    alert(destToken + " " + priceRoute.message);
-    return;
-  }
   const destAmount = ethers.BigNumber.from(priceRoute.destAmount).toString();
 
   const txParams = await paraSwap.buildTx(
@@ -37,7 +33,9 @@ export const swapToken = async (userSigner, provider, destToken, amountEth, send
     priceRoute,
     senderAddress,
     referrer,
-    receiver,
+    // receiver,
+    undefined,
+    { ignoreChecks: true },
   );
 
   const web3 = await Moralis.enable();

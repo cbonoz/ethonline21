@@ -51,14 +51,14 @@ See `./data/employees.csv`
 
 ### Sponsors
 
-- AAVE: AAVE is used to give the greatest selection of interest-bearing accounts offered in different ERC-20 supported tokens. The admin or the employee can select the currency most appropriate for their particular goals. The AAVE `OnBehalfOf` deposit feature is leveraged to enable admins to contribute on behalf of employees.
-- Paraswap: Dex aggregator used for getting the best exchange rates. For deposits, Paraswap enables swapping between the current currency (Eth) and the target currency for the admins account from the user interface.
-- Moralis: Secure login and balance for administrators against Metamask. Employee metadata and wallet information is stored and retrieved using Moralis objects. IPFS connection for retrieving badges.
-- Skynet: Deployment and homescreen access. Add cryptoperks to hosted storage. Skynet enables Cryptoperks to be easily accessible for any company admin to open the application from their homescreen.
-- Bitgo:wallet creation. BitGo SDKs, WBTC, Smart contracts library extensions and BitGo wallet. Each created wallet can be associated with an employee profile.
-- IPFS / Filecoin: Using nft.storage for employee badges, records, and achievements.
-- Reflexer: The Reflexer RAI is added/demoed as an exchangeable/swappable token for employee crypto account deposits. Reflexer can be paired with Paraswap for easy translation between ETH and RAI.
-- Pocket Network: Used to proxy and track kovan network requests serving the Cryptoperks application. Pocket network offers increased security and transparency into sources of RPC calls against the application (including on Kovan testnet demo).
+- <b>AAVE</b>: AAVE is used to give the greatest selection of interest-bearing accounts offered in different ERC-20 supported tokens. The admin or the employee can select the currency most appropriate for their particular goals. The AAVE `OnBehalfOf` deposit feature is leveraged to enable admins to contribute on behalf of employees.
+- <b>Paraswap</b>: Dex aggregator used for getting the best exchange rates. For deposits, Paraswap enables swapping between the current currency (Eth) and the target currency for the admins account from the user interface.
+- <b>Moralis</b>: Secure login and balance for administrators against Metamask. Employee metadata and wallet information is stored and retrieved using Moralis objects. IPFS connection for retrieving badges.
+- <b>Skynet</b>: Deployment and homescreen access: Used to deploy cryptoperks to a a distributed hosting service. Skynet can enable Cryptoperks to be easily accessible for any company admin to open the application from their homescreen.
+- <b>Bitgo</b>:wallet creation. BitGo SDKs, WBTC, Smart contracts library extensions and BitGo wallet. Each created wallet can be associated with an employee profile.
+- <b>IPFS/Filecoin</b>: Employee badges and record keeping. nft.storage creates a badge represented as an NFT that is transferrable and attached to the employee's record as he/she earns more achievements. Screenshot showing hosted IPFS uploads on the github below.
+- <b>Reflexer</b>: The Reflexer RAI is added/demoed as an exchangeable/swappable token for employee crypto account deposits. Reflexer can be paired with Paraswap for easy translation between ETH and RAI by employees and company admins.
+- <b>Pocket Network</b>: Used to proxy and track kovan network requests serving the Cryptoperks application. Pocket network offers increased security and transparency into sources of RPC calls against the application (including on Kovan testnet demo). Screenshot of pocket proxying requests on the github below. Relay can be swapped in the app config.
 
 <!--
 Demo flow:

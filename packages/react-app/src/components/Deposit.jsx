@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Input, Table } from "antd";
 import { AAVE_DATA, COLUMNS, depositAmount } from "../util/aave";
-import { DeleteFilled, DeleteOutlined, DeleteTwoTone } from "@ant-design/icons";
+import { ArrowLeftOutlined, DeleteFilled, DeleteOutlined, DeleteTwoTone } from "@ant-design/icons";
 import { getAssetAddress, getPoolAddress } from "../util";
 import { ParaSwap } from "paraswap";
 import SwapCoins from "./SwapCoins";
@@ -44,13 +44,15 @@ function Deposit({ localProvider, provider, userSigner, address, employee }) {
   if (swapActive) {
     return (
       <div>
-        <Button onClick={() => setSwapActive(false)}>Back</Button>
+        <Button className="action-button" onClick={() => setSwapActive(false)}>
+          <ArrowLeftOutlined /> Back
+        </Button>
         <br />
         <SwapCoins
           reserve={reserve}
           address={address}
           userSigner={userSigner}
-          provider={localProvider || provider}
+          provider={provider}
           employee={employee}
         />
       </div>
