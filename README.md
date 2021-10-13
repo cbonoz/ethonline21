@@ -49,7 +49,7 @@ https://www.mockaroo.com/
 
 See `./data/employees.csv`
 
-### Sponsors
+### Integrated services
 
 - <b>AAVE</b>: AAVE is used to give the greatest selection of interest-bearing accounts offered in different ERC-20 supported tokens. The admin or the employee can select the currency most appropriate for their particular goals. The AAVE `OnBehalfOf` deposit feature is leveraged to enable admins to contribute on behalf of employees.
 - <b>Paraswap</b>: Dex aggregator used for getting the best exchange rates. For deposits, Paraswap enables swapping between the current currency (Eth) and the target currency for the admins account from the user interface.
